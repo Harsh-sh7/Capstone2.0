@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const DIFFICULTIES = ['easy', 'medium', 'hard'];
@@ -23,7 +23,26 @@ const Quiz = () => {
   const [answerStatus, setAnswerStatus] = useState(null);
   const [showSettings, setShowSettings] = useState(true);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
+  const [showConfirmExit, setShowConfirmExit] = useState(false);
   const navigate = useNavigate();
+
+  const handleAnswer = useCallback((isCorrect) => {
+    setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
+    
+    if (isCorrect) {
+      setScore(prev => prev + 10);
+    }
+
+    setTimeout(() => {
+      setAnswerStatus(null);
+      if (currentQuestion + 1 < questions.length) {
+        setCurrentQuestion(prev => prev + 1);
+        setTimeLeft(30);
+      } else {
+        setShowSummary(true);
+      }
+    }, 1000);
+  }, [currentQuestion, questions.length]);
 
   useEffect(() => {
     if (!showSettings) {
@@ -41,21 +60,20 @@ const Quiz = () => {
   }, [currentQuestion, questions]);
 
   useEffect(() => {
-    if (!showSettings && !loading && !error && questions.length > 0) {
-      const timer = setInterval(() => {
+    let timer;
+    if (!showSettings && !loading && !error && questions.length > 0 && !showSummary) {
+      timer = setInterval(() => {
         setTimeLeft((prev) => {
           if (prev <= 1) {
-            clearInterval(timer);
             handleAnswer(false);
             return 30;
           }
           return prev - 1;
         });
       }, 1000);
-
-      return () => clearInterval(timer);
     }
-  }, [currentQuestion, loading, error, questions, showSettings]);
+    return () => clearInterval(timer);
+  }, [currentQuestion, loading, error, questions, showSettings, showSummary, handleAnswer]);
 
   const fetchQuestions = async () => {
     try {
@@ -79,36 +97,37 @@ const Quiz = () => {
     }
   };
 
-  const handleAnswer = (isCorrect) => {
-    setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
-    
-    if (isCorrect) {
-      setScore(prev => prev + 10);
-    }
-
-    setTimeout(() => {
-      setAnswerStatus(null);
-      if (currentQuestion + 1 < questions.length) {
-        setCurrentQuestion(prev => prev + 1);
-        setTimeLeft(30);
-      } else {
-        setShowSummary(true);
-      }
-    }, 1000);
-  };
-
   const handleRestart = () => {
     setShowSettings(true);
     setCurrentQuestion(0);
     setScore(0);
     setTimeLeft(30);
     setShowSummary(false);
+    setAnswerStatus(null);
+  };
+
+  const handleBackClick = () => {
+    setShowConfirmExit(true);
+  };
+
+  const handleConfirmExit = () => {
+    navigate('/');
+  };
+
+  const handleCancelExit = () => {
+    setShowConfirmExit(false);
   };
 
   if (showSettings) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+          <button
+            onClick={() => navigate('/')}
+            className="text-2xl mb-0 text-gray-800 px-4 py-0 rounded hover:bg-gray-300 transition-colors"
+          >
+            ←
+          </button>
           <h2 className="text-2xl font-bold mb-6 text-center">Quiz Settings</h2>
           
           <div className="mb-6">
@@ -217,7 +236,12 @@ const Quiz = () => {
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          {/* Progress Bar */}
+          <button
+            onClick={handleBackClick}
+            className="text-2xl mb-0 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors"
+          >
+            ←
+          </button>
           <div className="w-full bg-gray-200 rounded-full h-2.5 mb-6">
             <div
               className="bg-blue-500 h-2.5 rounded-full transition-all duration-300"
@@ -225,7 +249,6 @@ const Quiz = () => {
             ></div>
           </div>
 
-          {/* Timer */}
           <div className="text-right mb-4">
             <span className={`text-lg font-semibold ${
               timeLeft <= 10 ? 'text-red-500' : 'text-gray-700'
@@ -264,6 +287,29 @@ const Quiz = () => {
           </div>
         </div>
       </div>
+
+      {showConfirmExit && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h3 className="text-xl font-bold mb-4">Exit Quiz?</h3>
+            <p className="mb-4">Are you sure you want to exit the quiz? Your progress will be lost.</p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={handleCancelExit}
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmExit}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+              >
+                Exit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
