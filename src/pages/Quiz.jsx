@@ -23,6 +23,10 @@ const Quiz = () => {
   const [answerStatus, setAnswerStatus] = useState(null);
   const [showSettings, setShowSettings] = useState(true);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
+<<<<<<< HEAD
+=======
+  const [showConfirmExit, setShowConfirmExit] = useState(false);
+>>>>>>> bc21fb1 (Updated the quiz section)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -105,10 +109,34 @@ const Quiz = () => {
     setShowSummary(false);
   };
 
+<<<<<<< HEAD
+=======
+  const handleBackClick = () => {
+    setShowConfirmExit(true);
+  };
+
+  const handleConfirmExit = () => {
+    navigate('/');
+  };
+
+  const handleCancelExit = () => {
+    setShowConfirmExit(false);
+  };
+
+>>>>>>> bc21fb1 (Updated the quiz section)
   if (showSettings) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+<<<<<<< HEAD
+=======
+          <button
+            onClick={() => navigate('/')}
+            className="text-2xl text-gray-800 px-4 mb-0 rounded hover:bg-gray-300 transition-colors"
+          >
+            ←
+          </button>
+>>>>>>> bc21fb1 (Updated the quiz section)
           <h2 className="text-2xl font-bold mb-6 text-center">Quiz Settings</h2>
           
           <div className="mb-6">
@@ -217,7 +245,16 @@ const Quiz = () => {
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg p-6">
+<<<<<<< HEAD
           {/* Progress Bar */}
+=======
+          <button
+            onClick={handleBackClick}
+            className="text-2xl mb-0 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors"
+          >
+            ←
+          </button>
+>>>>>>> bc21fb1 (Updated the quiz section)
           <div className="w-full bg-gray-200 rounded-full h-2.5 mb-6">
             <div
               className="bg-blue-500 h-2.5 rounded-full transition-all duration-300"
@@ -225,7 +262,10 @@ const Quiz = () => {
             ></div>
           </div>
 
+<<<<<<< HEAD
           {/* Timer */}
+=======
+>>>>>>> bc21fb1 (Updated the quiz section)
           <div className="text-right mb-4">
             <span className={`text-lg font-semibold ${
               timeLeft <= 10 ? 'text-red-500' : 'text-gray-700'
@@ -264,6 +304,32 @@ const Quiz = () => {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+
+      {showConfirmExit && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h3 className="text-xl font-bold mb-4">Exit Quiz?</h3>
+            <p className="mb-4">Are you sure you want to exit the quiz? Your progress will be lost.</p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={handleCancelExit}
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmExit}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+              >
+                Exit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+>>>>>>> bc21fb1 (Updated the quiz section)
     </div>
   );
 };
