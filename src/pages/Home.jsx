@@ -63,18 +63,20 @@ const Home = () => {
             <p className="text-xl text-blue-100 mb-8 drop-shadow-md">
               Test your knowledge and challenge yourself with interactive quizzes
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <div className="flex flex-row gap-2 sm:gap-6 flex-wrap justify-start sm:justify-start items-center w-full mb-4">
               <Link 
                 to="/quiz" 
-                className={`bg-gradient-to-r ${colors.primary} text-white px-10 py-4 rounded-xl text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl`}
+                className={`bg-gradient-to-r ${colors.primary} text-white px-6 py-3 rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl w-1/2 min-w-[120px] text-center`}
+                style={{flex: 1}}
               >
                 Start Quiz
               </Link>
               <Link 
                 to="/leaderboard" 
-                className={`bg-gradient-to-r ${colors.secondary} text-white px-10 py-4 rounded-xl text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl`}
+                className={`bg-gradient-to-r ${colors.secondary} text-white px-6 py-3 rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl w-1/2 min-w-[120px] text-center`}
+                style={{flex: 1}}
               >
-                View Leaderboard
+                Leaderboard
               </Link>
             </div>
           </div>
@@ -119,16 +121,16 @@ const Home = () => {
 
         <div className={`${colors.card} rounded-2xl shadow-xl p-8 mb-12 ${colors.border}`}>
           <h2 className="text-3xl font-bold mb-6 text-white text-center">Daily Challenge</h2>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-blue-100 mb-3 text-lg">
+          <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
+            <div className="w-full sm:w-auto text-center sm:text-left">
+              <p className="text-blue-100 mb-2 text-base sm:text-lg">
                 {dailyChallenge.questions} questions • {dailyChallenge.difficulty} • {dailyChallenge.timeLimit}s per question
               </p>
               <p className="text-sm text-blue-200">Category: {dailyChallenge.category}</p>
             </div>
             <Link 
               to="/quiz" 
-              className={`bg-gradient-to-r ${colors.accent} text-white px-8 py-3 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg`}
+              className={`bg-gradient-to-r ${colors.accent} text-white px-8 py-3 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg w-full sm:w-auto text-center`}
             >
               Take Challenge
             </Link>

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import catQuiz from '../assets/Cat_Quiz2.gif';
+import SpinCat from '../assets/SpinCat.gif';
 
 const DIFFICULTIES = ['easy', 'medium', 'hard'];
 const CATEGORIES = [
@@ -223,7 +224,7 @@ const Quiz = () => {
     return (
       <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 flex items-center justify-center transition-all duration-500`}>
         <div className="text-center">
-          <div className="text-6xl mb-4 animate-spin">🎯</div>
+          <img src={SpinCat} alt="Loading..." className="mx-auto mb-4 w-32 h-32" />
           <div className="text-2xl font-semibold text-white">Loading questions...</div>
         </div>
       </div>
