@@ -27,9 +27,9 @@ const Navbar = () => {
             <Link to="/leaderboard" className="text-blue-200 hover:text-blue-400 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-900/30">Leaderboard</Link>
             <Link to="/profile" className="text-blue-200 hover:text-blue-400 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-900/30">Profile</Link>
             {user ? (
-              <div className="flex items-center space-x-2 bg-blue-900/40 px-3 py-1 rounded-lg">
-                <span className="text-blue-300 text-sm font-semibold truncate max-w-[120px]" title={username || user.email}>
-                  {username ? `@${username}` : user.email}
+              <div className="flex items-center space-x-2 px-3 py-1 rounded-lg">
+                <span className="text-blue-200 text-sm font-semibold truncate max-w-[120px]" title={username || user.email}>
+                  {username ? `Hey! ${username}` : user.email}
                 </span>
                 <button onClick={logout} className="ml-2 bg-blue-700 hover:bg-blue-800 text-white px-3 py-1 rounded text-sm font-medium transition shadow">Logout</button>
               </div>
@@ -59,7 +59,7 @@ const Navbar = () => {
             {user ? (
               <div className="flex items-center space-x-2 bg-blue-900/40 px-3 py-2 rounded-lg mt-2">
                 <span className="text-blue-300 text-sm font-semibold truncate max-w-[120px]" title={username || user.email}>
-                  {username ? `@${username}` : user.email}
+                  {username ? `Hey! ${username}` : user.email}
                 </span>
                 <button onClick={() => { logout(); handleMenuClose(); }} className="ml-2 bg-blue-700 hover:bg-blue-800 text-white px-3 py-1 rounded text-sm font-medium transition shadow">Logout</button>
               </div>

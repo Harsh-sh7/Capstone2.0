@@ -11,7 +11,7 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
+  const { user, loading, setUsername: setAuthUsername } = useAuth();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ export default function Signup() {
       const createdUser = userCredential.user;
       // Save username to Firestore
       await setDoc(doc(db, "users", createdUser.uid), { username, email });
+      setAuthUsername(username);
       navigate("/");
     } catch (err) {
       setError(err.message);
