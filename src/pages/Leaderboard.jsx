@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
 import catLeaderboard from '../assets/Cat_Leaderboard.gif';
 
 const DEMO_LEADERBOARD = [
@@ -11,7 +10,6 @@ const DEMO_LEADERBOARD = [
 ];
 
 const Leaderboard = () => {
-  const { colors } = useTheme();
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
@@ -24,7 +22,7 @@ const Leaderboard = () => {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 ${colors.background} relative overflow-hidden transition-all duration-500`}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden transition-all duration-500">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-40 right-40 w-80 h-80 bg-blue-700/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob"></div>
         <div className="absolute bottom-40 left-40 w-80 h-80 bg-blue-900/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob animation-delay-2000"></div>
@@ -42,7 +40,7 @@ const Leaderboard = () => {
         </div>
         <h1 className="text-6xl font-extrabold font-sans tracking-tight text-white text-center mb-0 drop-shadow-[0_2px_8px_rgba(37,99,235,0.5)]">Leaderboard</h1>
         
-        <div className={`${colors.card} rounded-2xl shadow-xl p-8 ${colors.border} relative`} style={{ marginTop: '40px' }}>
+        <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 border-blue-900/60 relative" style={{ marginTop: '40px' }}>
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-white">Top Performers</h2>
           </div>
@@ -57,7 +55,7 @@ const Leaderboard = () => {
               {leaderboard.map((user, idx) => (
                 <div
                   key={user.id}
-                  className={`p-6 rounded-xl border transition-all duration-300 ${colors.border} ${colors.card} ${colors.hover} hover:scale-105`}
+                  className="p-6 rounded-xl border transition-all duration-300 border-blue-900/60 bg-black/80 backdrop-blur-lg hover:bg-blue-900/30 hover:scale-105"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
@@ -97,20 +95,20 @@ const Leaderboard = () => {
           )}
         </div>
 
-        <div className={`${colors.card} rounded-2xl shadow-xl p-8 mt-8 ${colors.border}`}>
+        <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 mt-8 border-blue-900/60">
           <h2 className="text-3xl font-bold mb-6 text-white text-center">Achievement Badges</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className={`p-6 rounded-xl border text-center transition-all duration-300 ${colors.border} ${colors.card} ${colors.hover}`}>
+            <div className="p-6 rounded-xl border text-center transition-all duration-300 border-blue-900/60 bg-black/80 backdrop-blur-lg hover:bg-blue-900/30">
               <div className="text-4xl mb-4">🏆</div>
               <h3 className="font-semibold text-white text-lg mb-2">Quiz Master</h3>
               <p className="text-blue-100 text-sm">Complete 10 quizzes with 80%+ average</p>
             </div>
-            <div className={`p-6 rounded-xl border text-center transition-all duration-300 ${colors.border} ${colors.card} ${colors.hover}`}>
+            <div className="p-6 rounded-xl border text-center transition-all duration-300 border-blue-900/60 bg-black/80 backdrop-blur-lg hover:bg-blue-900/30">
               <div className="text-4xl mb-4">⚡</div>
               <h3 className="font-semibold text-white text-lg mb-2">Speed Demon</h3>
               <p className="text-blue-100 text-sm">Complete a quiz in under 2 minutes</p>
             </div>
-            <div className={`p-6 rounded-xl border text-center transition-all duration-300 ${colors.border} ${colors.card} ${colors.hover}`}>
+            <div className="p-6 rounded-xl border text-center transition-all duration-300 border-blue-900/60 bg-black/80 backdrop-blur-lg hover:bg-blue-900/30">
               <div className="text-4xl mb-4">🎯</div>
               <h3 className="font-semibold text-white text-lg mb-2">Perfect Score</h3>
               <p className="text-blue-100 text-sm">Get 100% on any quiz</p>

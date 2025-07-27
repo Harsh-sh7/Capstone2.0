@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
 
 const Navbar = () => {
-  const { colors } = useTheme();
   const { user, username, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -12,7 +10,7 @@ const Navbar = () => {
   const handleMenuClose = () => setMenuOpen(false);
 
   return (
-    <nav className={`bg-gradient-to-br from-blue-950 via-black to-blue-900 shadow-2xl border-b ${colors.border} transition-all duration-500`}>
+    <nav className="bg-gradient-to-br from-blue-950 via-black to-blue-900 shadow-2xl border-b border-blue-900/60 transition-all duration-500">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">

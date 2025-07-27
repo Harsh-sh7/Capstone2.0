@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import bgImage from '../assets/Profile.gif';
 
 const Profile = () => {
-  const { colors } = useTheme();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [quizHistory, setQuizHistory] = useState([]);
@@ -99,25 +97,25 @@ const Profile = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Total Quizzes</h3>
               <p className="text-4xl font-bold text-blue-300">{stats.totalQuizzes}</p>
             </div>
           </div>
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Points</h3>
               <p className="text-4xl font-bold text-white">{stats.totalPoints}</p>
             </div>
           </div>
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Trophies</h3>
               <p className="text-4xl font-bold text-yellow-400 flex items-center justify-center"><span className="mr-1">🏆</span>{stats.trophies}</p>
             </div>
           </div>
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Highest Score</h3>
               <p className="text-4xl font-bold text-amber-300">{stats.highestScore}%</p>
@@ -125,7 +123,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className={`${colors.card} rounded-2xl shadow-xl p-8 mb-12 ${colors.border}`}>
+        <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border-blue-900/60">
           <h2 className="text-3xl font-bold mb-6 text-white text-center">Quiz History</h2>
           {quizHistory.length === 0 ? (
             <div className="text-center py-12">
@@ -137,7 +135,7 @@ const Profile = () => {
               {(showAllHistory ? quizHistory : quizHistory.slice(0, 3)).map((result, index) => (
                 <div
                   key={index}
-                  className={`p-6 rounded-xl border transition-all duration-300 ${colors.border} ${colors.card} ${colors.hover}`}
+                  className="p-6 rounded-xl border transition-all duration-300 border-blue-900/60 bg-black/80 backdrop-blur-lg hover:bg-blue-900/30"
                 >
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
                     <div className="text-center sm:text-left w-full sm:w-auto">
@@ -181,7 +179,7 @@ const Profile = () => {
           )}
         </div>
         {stats.categoryAverages && stats.categoryAverages.length > 0 && (
-          <div className={`${colors.card} rounded-2xl shadow-xl p-8 mb-12 ${colors.border}`}>
+          <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border-blue-900/60">
             <h2 className="text-3xl font-bold mb-6 text-white text-center">Category Performance</h2>
             <div className="space-y-4">
               {stats.categoryAverages.map((cat) => (

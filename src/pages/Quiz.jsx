@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
 import catQuiz from '../assets/Cat_Quiz2.gif';
 import SpinCat from '../assets/SpinCat.gif';
 
@@ -14,7 +13,6 @@ const CATEGORIES = [
 ];
 
 const Quiz = () => {
-  const { colors } = useTheme();
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -142,7 +140,7 @@ const Quiz = () => {
 
   if (showSettings) {
     return (
-      <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden transition-all duration-500`}>
+      <div className="min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden transition-all duration-500">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-700/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-900/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob animation-delay-2000"></div>
@@ -153,7 +151,7 @@ const Quiz = () => {
         <img src={catQuiz} alt="Cat Quiz" className="fixed left-4 bottom-4 max-w-[300px] w-full z-20 rounded-xl shadow-lg pointer-events-none select-none" />
 
         <div className="relative z-10 flex items-center justify-center min-h-screen flex-col">
-          <div className={`${colors.card} p-8 rounded-2xl shadow-2xl max-w-md w-full ${colors.border}`}>
+          <div className="bg-black/80 backdrop-blur-lg p-8 rounded-2xl shadow-2xl max-w-md w-full border-blue-900/60">
             <button
               onClick={() => navigate('/')}
               className="text-2xl mb-4 text-white hover:text-blue-200 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
@@ -171,8 +169,8 @@ const Quiz = () => {
                     onClick={() => setSelectedDifficulty(difficulty)}
                     className={`p-3 rounded-xl font-medium transition-all duration-300 ${
                       selectedDifficulty === difficulty
-                        ? `bg-gradient-to-r ${colors.primary} text-white shadow-lg transform scale-105`
-                        : `${colors.card} text-blue-100 ${colors.hover} ${colors.border}`
+                        ? 'bg-gradient-to-r from-blue-700 to-blue-900 text-white shadow-lg transform scale-105'
+                        : 'bg-black/80 backdrop-blur-lg text-blue-100 hover:bg-blue-900/30 border-blue-900/60'
                     }`}
                   >
                     {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
@@ -186,7 +184,7 @@ const Quiz = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(Number(e.target.value))}
-                className={`w-full p-3 border rounded-xl ${colors.card} text-blue-100 backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-blue-400 ${colors.border}`}
+                className="w-full p-3 border rounded-xl bg-black/80 backdrop-blur-lg text-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 border-blue-900/60"
               >
                 {CATEGORIES.map((category) => (
                   <option key={category.id} value={category.id} className="bg-gray-800">
@@ -198,7 +196,7 @@ const Quiz = () => {
 
             <button
               onClick={() => setShowSettings(false)}
-              className={`w-full bg-gradient-to-r ${colors.primary} text-white py-4 rounded-xl font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg text-lg`}
+              className="w-full bg-gradient-to-r from-blue-700 to-blue-900 text-white py-4 rounded-xl font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg text-lg"
             >
               Start Quiz
             </button>
@@ -222,7 +220,7 @@ const Quiz = () => {
 
   if (loading) {
     return (
-      <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 flex items-center justify-center transition-all duration-500`}>
+      <div className="min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 flex items-center justify-center transition-all duration-500">
         <div className="text-center">
           <img src={SpinCat} alt="Loading..." className="mx-auto mb-4 w-32 h-32" />
           <div className="text-2xl font-semibold text-white">Loading questions...</div>
@@ -233,13 +231,13 @@ const Quiz = () => {
 
   if (error) {
     return (
-      <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 flex items-center justify-center transition-all duration-500`}>
-        <div className={`text-center ${colors.card} p-8 rounded-2xl ${colors.border}`}>
+      <div className="min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 flex items-center justify-center transition-all duration-500">
+        <div className="text-center bg-black/80 backdrop-blur-lg p-8 rounded-2xl border-blue-900/60">
           <div className="text-6xl mb-4">❌</div>
           <div className="text-2xl font-semibold text-red-300 mb-4">{error}</div>
           <button 
             onClick={fetchQuestions}
-            className={`bg-gradient-to-r ${colors.primary} text-white px-6 py-3 rounded-xl hover:scale-105 transform transition-all duration-300`}
+            className="bg-gradient-to-r from-blue-700 to-blue-900 text-white px-6 py-3 rounded-xl hover:scale-105 transform transition-all duration-300"
           >
             Try Again
           </button>
@@ -253,7 +251,7 @@ const Quiz = () => {
     const trophies = Math.floor(points / 50);
 
     return (
-      <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden transition-all duration-500`}>
+      <div className="min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden transition-all duration-500">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-700/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-900/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob animation-delay-2000"></div>
@@ -261,7 +259,7 @@ const Quiz = () => {
         </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className={`${colors.card} p-8 rounded-2xl shadow-2xl max-w-md w-full ${colors.border}`}>
+          <div className="bg-black/80 backdrop-blur-lg p-8 rounded-2xl shadow-2xl max-w-md w-full border-blue-900/60">
             <h2 className="text-3xl font-bold mb-8 text-center text-white">Quiz Complete!</h2>
             <div className="text-center mb-8">
               <div className="text-6xl mb-4">🏆</div>
@@ -276,13 +274,13 @@ const Quiz = () => {
             <div className="space-y-4">
               <button
                 onClick={handleRestart}
-                className={`w-full bg-gradient-to-r ${colors.primary} text-white py-4 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg font-semibold`}
+                className="w-full bg-gradient-to-r from-blue-700 to-blue-900 text-white py-4 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg font-semibold"
               >
                 Play Again
               </button>
               <button
                 onClick={() => navigate('/profile')}
-                className={`w-full ${colors.card} text-white py-4 rounded-xl ${colors.hover} transition-all duration-300 ${colors.border} font-semibold`}
+                className="w-full bg-black/80 backdrop-blur-lg text-white py-4 rounded-xl hover:bg-blue-900/30 transition-all duration-300 border-blue-900/60 font-semibold"
               >
                 View Profile
               </button>
@@ -309,7 +307,7 @@ const Quiz = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden py-8 transition-all duration-500`}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-950 via-black to-blue-900 relative overflow-hidden py-8 transition-all duration-500">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-700/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-900/30 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob animation-delay-2000"></div>
@@ -317,7 +315,7 @@ const Quiz = () => {
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto px-4">
-        <div className={`${colors.card} rounded-2xl shadow-2xl p-8 ${colors.border}`}>
+        <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border-blue-900/60">
           <button
             onClick={handleBackClick}
             className="text-2xl mb-4 text-white hover:text-blue-200 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
@@ -327,7 +325,7 @@ const Quiz = () => {
           
           <div className="w-full bg-white/20 rounded-full h-3 mb-8">
             <div
-              className={`bg-gradient-to-r ${colors.primary} h-3 rounded-full transition-all duration-300 shadow-lg`}
+              className="bg-gradient-to-r from-blue-700 to-blue-900 h-3 rounded-full transition-all duration-300 shadow-lg"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
@@ -357,7 +355,7 @@ const Quiz = () => {
                       ? 'border-emerald-400 bg-emerald-500/20 text-emerald-100 shadow-lg'
                       : answerStatus === 'incorrect' && answer === shuffledAnswers[index]
                       ? 'border-red-400 bg-red-500/20 text-red-100 shadow-lg'
-                      : `${colors.border} ${colors.card} text-blue-100 ${colors.hover} shadow-md`
+                      : 'border-blue-900/60 bg-black/80 backdrop-blur-lg text-blue-100 hover:bg-blue-900/30 shadow-md'
                   }`}
                   disabled={answerStatus !== null}
                   dangerouslySetInnerHTML={{ __html: answer }}
@@ -373,13 +371,13 @@ const Quiz = () => {
 
       {showConfirmExit && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className={`${colors.card} p-8 rounded-2xl shadow-2xl max-w-md w-full ${colors.border}`}>
+          <div className="bg-black/80 backdrop-blur-lg p-8 rounded-2xl shadow-2xl max-w-md w-full border-blue-900/60">
             <h3 className="text-2xl font-bold mb-4 text-white">Exit Quiz?</h3>
             <p className="mb-6 text-blue-100">Are you sure you want to exit the quiz? Your progress will be lost.</p>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={handleCancelExit}
-                className={`${colors.card} text-white px-6 py-3 rounded-xl ${colors.hover} transition-all duration-300 ${colors.border}`}
+                className="bg-black/80 backdrop-blur-lg text-white px-6 py-3 rounded-xl hover:bg-blue-900/30 transition-all duration-300 border-blue-900/60"
               >
                 Cancel
               </button>

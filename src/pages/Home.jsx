@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
 import bgImage from '../assets/Home.gif';
 
 const Home = () => {
-  const { colors } = useTheme();
   const [stats, setStats] = useState({
     totalQuizzes: 0,
     averageScore: 0,
@@ -66,14 +64,14 @@ const Home = () => {
             <div className="flex flex-row gap-2 sm:gap-6 flex-wrap justify-start sm:justify-start items-center w-full mb-4">
               <Link 
                 to="/quiz" 
-                className={`bg-gradient-to-r ${colors.primary} text-white px-6 py-3 rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl w-1/2 min-w-[120px] text-center`}
+                className="bg-gradient-to-r from-blue-700 to-blue-900 text-white px-6 py-3 rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl w-1/2 min-w-[120px] text-center"
                 style={{flex: 1}}
               >
                 Start Quiz
               </Link>
               <Link 
                 to="/leaderboard" 
-                className={`bg-gradient-to-r ${colors.secondary} text-white px-6 py-3 rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl w-1/2 min-w-[120px] text-center`}
+                className="bg-gradient-to-r from-blue-800 to-blue-600 text-white px-6 py-3 rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl w-1/2 min-w-[120px] text-center"
                 style={{flex: 1}}
               >
                 Leaderboard
@@ -91,25 +89,25 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Total Quizzes</h3>
               <p className="text-4xl font-bold text-blue-300">{stats.totalQuizzes}</p>
             </div>
           </div>
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Average Score</h3>
               <p className="text-4xl font-bold text-emerald-300">{stats.averageScore}%</p>
             </div>
           </div>
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Highest Score</h3>
               <p className="text-4xl font-bold text-amber-300">{stats.highestScore}%</p>
             </div>
           </div>
-          <div className={`${colors.card} p-6 rounded-2xl shadow-xl ${colors.border} hover:scale-105 transition-all duration-300`}>
+          <div className="bg-black/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border-blue-900/60 hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2 text-white">Accuracy</h3>
               <p className="text-4xl font-bold text-purple-300">
@@ -119,7 +117,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className={`${colors.card} rounded-2xl shadow-xl p-8 mb-12 ${colors.border}`}>
+        <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 mb-12 border-blue-900/60">
           <h2 className="text-3xl font-bold mb-6 text-white text-center">Daily Challenge</h2>
           <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
             <div className="w-full sm:w-auto text-center sm:text-left">
@@ -130,14 +128,14 @@ const Home = () => {
             </div>
             <Link 
               to="/quiz" 
-              className={`bg-gradient-to-r ${colors.accent} text-white px-8 py-3 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg w-full sm:w-auto text-center`}
+              className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-3 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg w-full sm:w-auto text-center"
             >
               Take Challenge
             </Link>
           </div>
         </div>
 
-        <div className={`${colors.card} rounded-2xl shadow-xl p-8 ${colors.border}`}>
+        <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 border-blue-900/60">
           <h2 className="text-3xl font-bold mb-6 text-white text-center">Achievements</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {achievements.map((achievement) => (
@@ -146,7 +144,7 @@ const Home = () => {
                 className={`p-6 rounded-xl border transition-all duration-300 ${
                   achievement.completed
                     ? 'border-emerald-400 bg-emerald-500/20 backdrop-blur-lg'
-                    : `${colors.border} ${colors.card} ${colors.hover}`
+                    : 'border-blue-900/60 bg-black/80 backdrop-blur-lg hover:bg-blue-900/30'
                 }`}
               >
                 <h3 className="font-semibold mb-2 text-white text-lg">{achievement.name}</h3>
