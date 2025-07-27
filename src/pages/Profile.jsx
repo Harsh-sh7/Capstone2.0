@@ -139,19 +139,19 @@ const Profile = () => {
                   key={index}
                   className={`p-6 rounded-xl border transition-all duration-300 ${colors.border} ${colors.card} ${colors.hover}`}
                 >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h3 className="font-semibold text-white text-lg mb-2">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
+                    <div className="text-center sm:text-left w-full sm:w-auto">
+                      <h3 className="font-semibold text-white text-lg mb-1">
                         {result.category} - {result.difficulty}
                       </h3>
-                      <p className="text-blue-100">
+                      <p className="text-blue-100 mb-1">
                         {result.correctAnswers} out of {result.totalQuestions} correct
                       </p>
-                      <p className="text-blue-200 text-sm">
+                      <p className="text-blue-200 text-sm mb-1">
                         {new Date(result.date).toLocaleDateString()}
                       </p>
                     </div>
-                    <div className="text-right">
+                    <div className="text-center sm:text-right w-full sm:w-auto mt-2 sm:mt-0">
                       <p className="text-3xl font-bold text-white">{result.score}%</p>
                       <p className="text-blue-100 text-sm">Score</p>
                     </div>
